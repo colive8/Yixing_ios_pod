@@ -1,0 +1,4 @@
+framework module yixingAd {
+    umbrella header "yixingAd.h"
+    export *
+}
