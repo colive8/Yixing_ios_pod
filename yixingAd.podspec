@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'yixingAd'
-  s.version          = '1.5.1'
+ s.version          = '1.5.2'
   s.summary          = 'Yixing Ad SDK'
   s.description      = 'Yixing Ad SDK Objective-C (binary distribution)'
   s.homepage         = 'https://github.com/colive8/Yixing_ios_pod'
@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   # 二进制框架由其自身的类型决定（动态/静态），不在此处强制
 
   # 使用 XCFramework 二进制分发（更新至 1.5.0）
-  s.vendored_frameworks = 'yixingAd-1.5.1.xcframework'
+  s.vendored_frameworks = 'yixingAd.xcframework'
 
   # Swift 导入模块名保持一致
   s.module_name = 'yixingAd'
