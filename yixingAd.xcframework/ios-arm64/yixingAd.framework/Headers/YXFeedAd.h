@@ -64,6 +64,8 @@ typedef void (^YXFeedAdFailBlock)(YXFeedAd *ad, NSError *error);
 - (void)loadAd;
 /** 统一命名：带请求对象加载（当前版本占位，不消费额外参数） */
 - (void)loadAd:(YAdRequest *)request;
+/** 直接注入数据以就绪并触发 onLoad（用于测试/模拟/数据复用） */
+- (void)loadAdWithData:(NSDictionary *)data;
 /** 统一命名：默认展示（信息流无默认容器，返回错误） */
 - (void)showAd;
 /** 统一命名：在指定上下文展示（UIView 容器） */

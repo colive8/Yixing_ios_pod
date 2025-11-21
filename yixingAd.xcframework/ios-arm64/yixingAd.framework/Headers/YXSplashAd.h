@@ -30,6 +30,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)loadAd;
 /// 统一命名：带请求对象加载（当前版本占位，不消费额外参数）
 - (void)loadAd:(YAdRequest *)request;
+/// 注入已获取的广告数据用于展示（测试/模拟/复用数据）
+- (void)loadAdWithData:(NSDictionary *)data;
 /// 统一命名：默认展示（开屏默认展示到keyWindow）
 - (void)showAd;
 /// 统一命名：在指定上下文展示（UIWindow/UIViewController/UIView）
