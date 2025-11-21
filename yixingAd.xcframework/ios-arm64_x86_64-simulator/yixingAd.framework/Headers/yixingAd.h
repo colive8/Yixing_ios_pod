@@ -18,6 +18,8 @@ FOUNDATION_EXPORT const unsigned char yixingAdVersionString[];
 // Removed legacy manager from public umbrella
 
 #import "YixingAdSDK.h"
+#import "YAdRequest.h"
+#import "YAdResponse.h"
 #import "YXAdCommon.h"
 #import "YXAdEventDelegate.h"
 #import "YXBannerAd.h"
@@ -26,6 +28,6 @@ FOUNDATION_EXPORT const unsigned char yixingAdVersionString[];
 #import "YXFeedAd.h"
 #import "YXRewardedVideoAd.h"
 #if __has_include(<UIKit/UIKit.h>)
-// FeedView 为内部实现细节，不对外暴露
+// 内部视图不再对外暴露，使用对应 Ad API 渲染
 #endif
 // gRPC support is provided through Swift bridging header
