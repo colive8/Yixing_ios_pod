@@ -55,8 +55,8 @@ typedef YAdRequest YixingAdRequest;
  */
 @interface YixingAdSDK : NSObject
 
-+ (void)initializeWithAppId:(NSString *)appId;
-+ (void)initializeWithAppId:(NSString *)appId host:(NSString *)host port:(NSInteger)port;
+// 初始化 SDK（不传入 appId/host/port）
++ (void)initializeSDK;
 + (NSString *)appId;
 + (NSString *)version;
 + (NSInteger)versionCode;
@@ -73,6 +73,10 @@ typedef YAdRequest YixingAdRequest;
 
 // MARK: - App 信息覆盖（供请求构造时优先使用）
 + (void)setAppInfoWithName:(NSString *)name bundle:(NSString *)bundle version:(NSString *)version;
+// 统一设置 App 信息（含 appId），可在请求前调用，无需在初始化时传入
++ (void)setAppInfo:(NSString *)appId name:(NSString *)name bundle:(NSString *)bundle version:(NSString *)version;
+// 在发送请求前应用 App 信息到请求对象（若字段缺失则自动补齐）
++ (void)applyAppInfoToRequest:(YAdRequest *)request;
 + (nullable NSString *)appName;   // 返回覆盖值；若未设置则从 Info.plist 读取
 + (nullable NSString *)appBundle; // 返回覆盖值；若未设置则从 Info.plist 读取
 + (nullable NSString *)appVersion; // 返回覆盖值；若未设置则从 Info.plist 读取
