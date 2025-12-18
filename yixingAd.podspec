@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'yixingAd'
-  s.version          = '1.6.4'
+  s.version          = '1.6.5'
   s.summary          = 'Yixing Ad SDK'
   s.description      = 'Yixing Ad SDK Objective-C (binary distribution)'
   s.homepage         = 'https://github.com/colive8/Yixing_ios_pod'
@@ -21,9 +21,9 @@ Pod::Spec.new do |s|
   s.module_name = 'yixingAd'
 
   # 依赖版本锁定，避免歧义（移除 AFNetworking）
-  s.dependency 'gRPC', '1.75.0'
-  s.dependency 'gRPC-ProtoRPC', '1.75.0'
-  s.dependency 'Protobuf', '4.33.0'
+  s.dependency 'gRPC', '~> 1.75.0'
+  s.dependency 'gRPC-ProtoRPC', '~> 1.75.0'
+  s.dependency 'Protobuf', '~> 4.0'
 
   # 显式链接系统框架，避免 CoreGraphics 符号缺失
   s.frameworks = 'CoreGraphics'
@@ -34,6 +34,31 @@ Pod::Spec.new do |s|
     'CLANG_CXX_LIBRARY' => 'libc++',
     'ENABLE_BITCODE' => 'NO',
     'DEFINES_MODULE' => 'YES',
-    'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) GPB_USE_PROTOBUF_FRAMEWORK_IMPORTS=1 YIXINGAD_SDK_VERSION_CODE=1601'
+    'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) GPB_USE_PROTOBUF_FRAMEWORK_IMPORTS=1 YIXINGAD_SDK_VERSION_CODE=1605'
+  }
+  s.user_target_xcconfig = {
+    'LD_RUNPATH_SEARCH_PATHS' => '$(inherited) @executable_path/Frameworks @loader_path/Frameworks @executable_path/../../Frameworks'
+  }
+
+  s.script_phase = {
+    :name => 'Resign embedded GRPCClient.framework',
+    :execution_position => :after_compile,
+    :script => <<-'SCRIPT'
+set -euo pipefail
+if [ "${CODE_SIGNING_ALLOWED:-YES}" != "YES" ]; then
+  exit 0
+fi
+if [ -z "${EXPANDED_CODE_SIGN_IDENTITY:-}" ]; then
+  exit 0
+fi
+FRAMEWORKS_DIR="${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/yixingAd.framework/Frameworks"
+if [ -d "${FRAMEWORKS_DIR}" ]; then
+  for fw in "${FRAMEWORKS_DIR}"/*.framework; do
+    if [ -d "$fw" ]; then
+      /usr/bin/codesign --force --sign "${EXPANDED_CODE_SIGN_IDENTITY}" --preserve-metadata=identifier,entitlements "$fw"
+    fi
+  done
+fi
+SCRIPT
   }
 end
