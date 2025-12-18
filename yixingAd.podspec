@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'yixingAd'
-  s.version          = '1.6.5'
+  s.version          = '1.6.6'
   s.summary          = 'Yixing Ad SDK'
   s.description      = 'Yixing Ad SDK Objective-C (binary distribution)'
   s.homepage         = 'https://github.com/colive8/Yixing_ios_pod'
@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
   s.requires_arc = true
   # 二进制框架由其自身的类型决定（动态/静态），不在此处强制
 
-  # 使用 XCFramework 二进制分发（更新至 1.6.1）
+  # 使用 XCFramework 二进制分发（更新至 1.6.6）
   s.vendored_frameworks = 'yixingAd.xcframework'
 
   # Swift 导入模块名保持一致
@@ -34,31 +34,6 @@ Pod::Spec.new do |s|
     'CLANG_CXX_LIBRARY' => 'libc++',
     'ENABLE_BITCODE' => 'NO',
     'DEFINES_MODULE' => 'YES',
-    'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) GPB_USE_PROTOBUF_FRAMEWORK_IMPORTS=1 YIXINGAD_SDK_VERSION_CODE=1605'
-  }
-  s.user_target_xcconfig = {
-    'LD_RUNPATH_SEARCH_PATHS' => '$(inherited) @executable_path/Frameworks @loader_path/Frameworks @executable_path/../../Frameworks'
-  }
-
-  s.script_phase = {
-    :name => 'Resign embedded GRPCClient.framework',
-    :execution_position => :after_compile,
-    :script => <<-'SCRIPT'
-set -euo pipefail
-if [ "${CODE_SIGNING_ALLOWED:-YES}" != "YES" ]; then
-  exit 0
-fi
-if [ -z "${EXPANDED_CODE_SIGN_IDENTITY:-}" ]; then
-  exit 0
-fi
-FRAMEWORKS_DIR="${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/yixingAd.framework/Frameworks"
-if [ -d "${FRAMEWORKS_DIR}" ]; then
-  for fw in "${FRAMEWORKS_DIR}"/*.framework; do
-    if [ -d "$fw" ]; then
-      /usr/bin/codesign --force --sign "${EXPANDED_CODE_SIGN_IDENTITY}" --preserve-metadata=identifier,entitlements "$fw"
-    fi
-  done
-fi
-SCRIPT
+    'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) GPB_USE_PROTOBUF_FRAMEWORK_IMPORTS=1 YIXINGAD_SDK_VERSION_CODE=1606'
   }
 end
