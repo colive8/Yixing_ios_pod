@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'yixingAd'
-  s.version          = '1.6.7'
+  s.version          = '1.6.8'
   s.summary          = 'Yixing Ad SDK'
   s.description      = 'Yixing Ad SDK Objective-C (binary distribution)'
   s.homepage         = 'https://github.com/colive8/Yixing_ios_pod'
@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
 
   # 使用静态库 XCFramework 分发（真正静态，已内联 gRPC 依赖）
   s.static_framework = true
-  s.vendored_libraries = 'yixingAd.xcframework'
+  s.vendored_frameworks = 'yixingAd.xcframework'
 
   # Swift 导入模块名保持一致
   s.module_name = 'yixingAd'
@@ -33,6 +33,6 @@ Pod::Spec.new do |s|
     'ENABLE_BITCODE' => 'NO',
     'DEFINES_MODULE' => 'YES',
     'OTHER_LDFLAGS' => '$(inherited) -ObjC',
-    'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) YIXINGAD_SDK_VERSION_CODE=1607'
+    'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) YIXINGAD_SDK_VERSION_CODE=1608'
   }
 end
