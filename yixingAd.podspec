@@ -1,8 +1,8 @@
 Pod::Spec.new do |s|
   s.name             = 'yixingAd'
-  s.version          = '1.6.9'
+  s.version          = '1.7.0'
   s.summary          = 'Yixing Ad SDK'
-  s.description      = 'Yixing Ad SDK Objective-C (binary distribution)'
+  s.description      = 'Yixing Ad SDK Objective-C (binary distribution). Lightweight version with external dependencies.'
   s.homepage         = 'https://github.com/colive8/Yixing_ios_pod'
   s.license          = { :type => 'MIT' }
   s.author           = { 'yixing' => 'dev@example.com' }
@@ -12,28 +12,30 @@ Pod::Spec.new do |s|
 
   s.platform     = :ios, '12.0'
   s.requires_arc = true
-  # 二进制框架由其自身的类型决定（动态/静态），不在此处强制
-
-  # 使用静态库 XCFramework 分发（真正静态，已内联 gRPC 依赖）
+  
+  # 标记为静态框架（本身是静态库，但有外部依赖）
   s.static_framework = true
   s.vendored_frameworks = 'yixingAd.xcframework'
 
   # Swift 导入模块名保持一致
   s.module_name = 'yixingAd'
 
-  # 已静态内联 gRPC/Protobuf 代码，无需在宿主侧再声明这些依赖
+  # 恢复标准依赖声明
+  # 用户集成时 CocoaPods 会自动处理这些依赖的下载和链接
+  s.dependency 'gRPC-ProtoRPC'
+  s.dependency 'Protobuf'
 
-  # 显式链接系统框架和库，避免 gRPC/Protobuf 符号缺失或链接错误
+  # 显式链接系统框架和库
   s.frameworks = 'CoreGraphics', 'SystemConfiguration', 'CFNetwork', 'Security', 'CoreTelephony'
   s.libraries  = 'c++', 'z'
 
-  # 编译设置（宿主方无须开启 Swift 模块接口等设置）
+  # 编译设置
   s.pod_target_xcconfig = {
     'CLANG_CXX_LANGUAGE_STANDARD' => 'gnu++17',
     'CLANG_CXX_LIBRARY' => 'libc++',
     'ENABLE_BITCODE' => 'NO',
     'DEFINES_MODULE' => 'YES',
     'OTHER_LDFLAGS' => '$(inherited) -ObjC',
-    'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) YIXINGAD_SDK_VERSION_CODE=1609'
+    'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) YIXINGAD_SDK_VERSION_CODE=1700'
   }
 end
