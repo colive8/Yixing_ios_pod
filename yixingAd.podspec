@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'yixingAd'
-  s.version          = '1.6.8'
+  s.version          = '1.6.9'
   s.summary          = 'Yixing Ad SDK'
   s.description      = 'Yixing Ad SDK Objective-C (binary distribution)'
   s.homepage         = 'https://github.com/colive8/Yixing_ios_pod'
@@ -23,8 +23,9 @@ Pod::Spec.new do |s|
 
   # 已静态内联 gRPC/Protobuf 代码，无需在宿主侧再声明这些依赖
 
-  # 显式链接系统框架，避免 CoreGraphics 符号缺失
-  s.frameworks = 'CoreGraphics', 'SystemConfiguration', 'CFNetwork', 'Security'
+  # 显式链接系统框架和库，避免 gRPC/Protobuf 符号缺失或链接错误
+  s.frameworks = 'CoreGraphics', 'SystemConfiguration', 'CFNetwork', 'Security', 'CoreTelephony'
+  s.libraries  = 'c++', 'z'
 
   # 编译设置（宿主方无须开启 Swift 模块接口等设置）
   s.pod_target_xcconfig = {
@@ -33,6 +34,6 @@ Pod::Spec.new do |s|
     'ENABLE_BITCODE' => 'NO',
     'DEFINES_MODULE' => 'YES',
     'OTHER_LDFLAGS' => '$(inherited) -ObjC',
-    'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) YIXINGAD_SDK_VERSION_CODE=1608'
+    'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) YIXINGAD_SDK_VERSION_CODE=1609'
   }
 end
