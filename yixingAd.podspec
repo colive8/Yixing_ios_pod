@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'yixingAd'
-  s.version          = '1.7.2'
+  s.version          = '1.7.3'
   s.summary          = 'Yixing Ad SDK'
   s.description      = 'Yixing Ad SDK Objective-C (binary distribution). Lightweight headers and external dependencies.'
   s.homepage         = 'https://github.com/colive8/Yixing_ios_pod'
