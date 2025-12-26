@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "YAdRequest.h"
+#import "YXAdCommon.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -100,6 +101,16 @@ typedef YAdRequest YixingAdRequest;
 + (BOOL)isAutoCollectIDFAEnabled;
 + (void)setAutoCollectLocationEnabled:(BOOL)enabled;  // 默认 YES
 + (BOOL)isAutoCollectLocationEnabled;
+
++ (void)setLogEnabled:(BOOL)enabled;
++ (BOOL)isLogEnabled;
++ (void)setLogLevel:(YXLogLevel)level;
++ (YXLogLevel)logLevel;
++ (void)setLogTagFilter:(nullable NSSet<NSString *> *)tags;
++ (nullable NSSet<NSString *> *)logTagFilter;
++ (void)setLogHandler:(void (^)(NSString *tag, NSInteger level, NSString *message))handler;
++ (BOOL)shouldLogForTag:(nullable NSString *)tag level:(NSInteger)level;
++ (void)emitLogWithTag:(nullable NSString *)tag level:(NSInteger)level message:(NSString *)message;
 
 @end
 

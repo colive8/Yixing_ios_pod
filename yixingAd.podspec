@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'yixingAd'
-  s.version          = '1.7.7'
+  s.version          = '1.7.8'
   s.summary          = 'Yixing Ad SDK'
   s.description      = 'Yixing Ad SDK Objective-C (binary distribution). Lightweight headers and external dependencies.'
   s.homepage         = 'https://github.com/colive8/Yixing_ios_pod'
@@ -36,6 +36,6 @@ Pod::Spec.new do |s|
     'ENABLE_BITCODE' => 'NO',
     'DEFINES_MODULE' => 'YES',
     'OTHER_LDFLAGS' => '$(inherited) -ObjC',
-    'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) YIXINGAD_SDK_VERSION_CODE=1701'
+    'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) YIXINGAD_SDK_VERSION_CODE=1708'
   }
 end
